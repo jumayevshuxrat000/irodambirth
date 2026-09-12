@@ -69,9 +69,9 @@ export default function HeroSection() {
       <FloatingParticles density="normal" />
 
       <Bunny variant="bounce" hold={null} style={{ top: '2%', left: '1%' }} size={64} tilt={-4} />
-      <Bunny variant="wave" hold={null} style={{ top: '16%', right: '3%' }} size={70} flip />
-      <Bunny variant="jump" hold={null} style={{ bottom: '4%', left: '2%' }} size={78} />
-      <Bunny variant="sway" hold="flower" style={{ bottom: '8%', right: '4%' }} size={62} />
+      <Bunny variant="wave" hold={null} style={{ top: '16%', right: '3%' }} size={170} flip />
+      <Bunny variant="jump" hold={null} style={{ bottom: '4%', left: '2%' }} size={138} />
+      <Bunny variant="sway" hold="flower" style={{ bottom: '8%', right: '4%' }} size={212} />
 
       <div style={{ position: 'relative', zIndex: 4, textAlign: 'center', maxWidth: 720 }}>
         <motion.p

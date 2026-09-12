@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Bunny from "./decor/Bunny.jsx";
 import ScrollReveal from "./decor/ScrollReveal.jsx";
-import vedio from "./assets/photo/vidio.mp4";
+import videoSrc from "./assets/photo/vidio.mp4";
 
 export default function VideoSection() {
+  const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    videoRef.current?.play();
+  };
 
   return (
     <section
@@ -13,14 +18,33 @@ export default function VideoSection() {
       style={{
         minHeight: "85vh",
         justifyContent: "center",
+        padding: "0 16px",
         background:
           "linear-gradient(180deg, #fff6ef 0%, #ffd9e6 55%, #f7a9c9 100%)",
       }}
     >
-      <Bunny variant="sleep" style={{ top: "10%", left: "4%" }} size={54} />
+      <style>{`
+        .video-frame {
+          width: 100%;
+          max-width: 1160px;
+        }
+        @media (max-width: 640px) {
+          .video-section-bunny {
+            display: none;
+          }
+        }
+      `}</style>
+
+      <Bunny
+        variant="sleep"
+        className="video-section-bunny"
+        style={{ top: "10%", left: "4%" }}
+        size={54}
+      />
       <Bunny
         variant="wave"
         hold="camera"
+        className="video-section-bunny"
         style={{ top: "6%", right: "5%" }}
         size={62}
         flip
@@ -52,18 +76,30 @@ export default function VideoSection() {
             marginTop: 40,
             marginBottom: 40,
             position: "relative",
-            justifyContent: "center",
-            width: 1160,
-            maxWidth: "150vw",
           }}
           whileHover={{ scale: 1.01 }}
         >
-          <video src={vedio} controls />
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            controls
+            playsInline
+            preload="metadata"
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: 16,
+              display: "block",
+            }}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onEnded={() => setPlaying(false)}
+          />
           {!playing && (
             <div className="play-overlay">
               <button
                 className="play-circle"
-                onClick={() => setPlaying(true)}
+                onClick={handlePlay}
                 aria-label="play video"
               >
                 ▶
@@ -77,7 +113,7 @@ export default function VideoSection() {
               left: 18,
               color: "white",
               fontFamily: "var(--font-script)",
-              fontSize: "1.1rem",
+              fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)",
               textShadow: "0 2px 8px rgba(0,0,0,0.4)",
             }}
           >

@@ -94,17 +94,6 @@ export default function MusicSection() {
 
 
       <Bunny
-        variant="sway"
-        style={{ top: "15%", left: "67%", bottom: "6%" }}
-        size={186}
-      />
-      <Bunny
-        variant="sway"
-        style={{ top: "12%", left: "63%", bottom: "6%" }}
-        size={156}
-      />
-
-      <Bunny
         variant="wave"
         hold="heart"
         style={{ bottom: "5%", right: "3%" }}
